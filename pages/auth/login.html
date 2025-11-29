@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>MechanicConnect — Login</title>
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+  <main class="container" style="padding:80px 20px">
+    <a href="../index.html" class="link-muted" style="display:inline-block;margin-bottom:16px;">← Back to Home</a>
+    <div class="auth-card">
+      <h1>Sign in</h1>
+      <p class="modal-sub">Choose Traveler or Mechanic account to sign in.</p>
+
+      <div class="login-tabs" role="tablist">
+        <button class="tab active" id="tab-traveler-page">Traveler</button>
+        <button class="tab" id="tab-mechanic-page">Mechanic</button>
+      </div>
+
+      <form id="form-traveler-page" class="auth-form">
+        <label class="form-group"><span>Email</span><input type="email" id="traveler-email-page" required></label>
+        <label class="form-group"><span>Password</span><input type="password" id="traveler-password-page" required></label>
+        <div class="form-row"><label class="checkbox"><input type="checkbox"> Remember me</label><a class="link-muted" href="#">Forgot?</a></div>
+        <div class="form-actions"><button class="btn btn-primary" type="submit">Sign in as Traveler</button></div>
+      </form>
+
+      <form id="form-mechanic-page" class="auth-form hidden">
+        <label class="form-group"><span>Phone or Email</span><input type="text" id="mechanic-identifier-page" required></label>
+        <label class="form-group"><span>Password</span><input type="password" id="mechanic-password-page" required></label>
+        <label class="form-group"><span>License / ID</span><input type="text" id="mechanic-license-page"></label>
+        <div class="form-row"><label class="checkbox"><input type="checkbox"> Keep me signed in</label><a class="link-muted" href="#">Forgot?</a></div>
+        <div class="form-actions"><button class="btn btn-primary" type="submit">Sign in as Mechanic</button></div>
+      </form>
+
+      <p style="margin-top:18px; color:var(--text-light)">Don't have an account? <a href="signup.html">Create an account</a></p>
+    </div>
+  </main>
+  <script src="../assets/js/main.js"></script>
+  <script src="auth.js"></script>
+</body>
+</html>
