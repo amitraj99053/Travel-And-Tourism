@@ -20,17 +20,17 @@
       </div>
 
       <form id="signup-traveler" class="auth-form">
-        <label class="form-group"><span>Full Name</span><input type="text" id="traveler-name" required></label>
-        <label class="form-group"><span>Email</span><input type="email" id="traveler-email-sign" required></label>
-        <label class="form-group"><span>Password</span><input type="password" id="traveler-password-sign" required></label>
+        <label class="form-group"><span>Full Name</span><input type="text" id="traveler-name" autocomplete="name" required></label>
+        <label class="form-group"><span>Email</span><input type="email" id="traveler-email-sign" autocomplete="email" required></label>
+        <label class="form-group"><span>Password</span><input type="password" id="traveler-password-sign" autocomplete="new-password" required></label>
         <div class="form-actions"><button class="btn btn-primary" type="submit">Create Traveler Account</button></div>
       </form>
 
       <form id="signup-mechanic" class="auth-form hidden">
-        <label class="form-group"><span>Full Name</span><input type="text" id="mechanic-name" required></label>
-        <label class="form-group"><span>Email or Phone</span><input type="text" id="mechanic-email-phone" required></label>
-        <label class="form-group"><span>Password</span><input type="password" id="mechanic-password-sign" required></label>
-        <label class="form-group"><span>License / ID</span><input type="text" id="mechanic-license-sign" required></label>
+        <label class="form-group"><span>Full Name</span><input type="text" id="mechanic-name" autocomplete="name" required></label>
+        <label class="form-group"><span>Email or Phone</span><input type="text" id="mechanic-email-phone" autocomplete="email" required></label>
+        <label class="form-group"><span>Password</span><input type="password" id="mechanic-password-sign" autocomplete="new-password" required></label>
+        <label class="form-group"><span>License / ID</span><input type="text" id="mechanic-license-sign" autocomplete="off" required></label>
         <div class="form-actions"><button class="btn btn-primary" type="submit">Create Mechanic Account</button></div>
       </form>
 

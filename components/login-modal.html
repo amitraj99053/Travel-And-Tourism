@@ -1,0 +1,134 @@
+<!-- Login Modal -->
+<div class="modal-backdrop" id="login-modal" aria-hidden="true" role="dialog" aria-modal="true"
+    aria-labelledby="login-title" aria-describedby="login-desc">
+    <div class="modal-panel" role="document">
+        <button class="modal-close" id="login-close" aria-label="Close login dialog">✕</button>
+        <div class="modal-body">
+            <header class="modal-header">
+                <h3 id="login-title">Sign in to MechanicConnect</h3>
+                <p id="login-desc" class="modal-sub">Choose your role to sign in as a Traveler or Mechanic</p>
+            </header>
+            <div class="auth-mode-toggle" role="tablist" aria-label="Authentication mode">
+                <button id="auth-mode-signin" class="mode active" aria-pressed="true">Sign In</button>
+                <button id="auth-mode-signup" class="mode" aria-pressed="false">Sign Up</button>
+            </div>
+
+            <div class="auth-views">
+                <!-- Chooser: presented when Get Started is clicked -->
+                <div class="view-chooser hidden" id="auth-chooser">
+                    <div class="chooser-grid">
+                        <div class="chooser-card" id="chooser-signup">
+                            <h4>Create an Account</h4>
+                            <p>Join as a Traveler or Mechanic to access all features.</p>
+                            <button class="btn btn-primary" id="chooser-signup-btn">Sign Up</button>
+                            <p style="margin-top:8px"><a href="pages/auth/signup.html" class="link-muted">Open full
+                                    signup page</a></p>
+                        </div>
+                        <div class="chooser-card" id="chooser-signin">
+                            <h4>Have an Account?</h4>
+                            <p>Sign in to manage your bookings and profile.</p>
+                            <button class="btn btn-outline" id="chooser-signin-btn">Sign In</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Sign In View -->
+                <div class="view-signin">
+                    <div class="login-tabs" role="tablist" aria-label="Login roles">
+                        <button class="tab active" role="tab" id="tab-traveler" aria-controls="panel-traveler"
+                            aria-selected="true">Traveler</button>
+                        <button class="tab" role="tab" id="tab-mechanic" aria-controls="panel-mechanic"
+                            aria-selected="false">Mechanic</button>
+                    </div>
+                    <div class="login-panels">
+                        <form class="login-panel" id="panel-traveler" role="tabpanel" aria-labelledby="tab-traveler">
+                            <label class="form-group">
+                                <span>Email</span>
+                                <input type="email" id="traveler-email" name="travelerEmail"
+                                    placeholder="you@example.com" autocomplete="email" required>
+                            </label>
+                            <label class="form-group">
+                                <span>Password</span>
+                                <input type="password" id="traveler-password" name="travelerPassword"
+                                    placeholder="••••••••" autocomplete="current-password" required>
+                            </label>
+                            <div class="form-row">
+                                <label class="checkbox"><input type="checkbox" id="traveler-remember"> Remember
+                                    me</label>
+                                <a href="#" class="link-muted">Forgot?</a>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">Sign in as Traveler</button>
+                            </div>
+                        </form>
+
+                        <form class="login-panel hidden" id="panel-mechanic" role="tabpanel"
+                            aria-labelledby="tab-mechanic">
+                            <label class="form-group">
+                                <span>Phone or Email</span>
+                                <input type="text" id="mechanic-identifier" name="mechanicId"
+                                    placeholder="phone or email" autocomplete="email" required>
+                            </label>
+                            <label class="form-group">
+                                <span>Password</span>
+                                <input type="password" id="mechanic-password" name="mechanicPassword"
+                                    placeholder="••••••••" autocomplete="current-password" required>
+                            </label>
+                            <label class="form-group">
+                                <span>License / ID</span>
+                                <input type="text" id="mechanic-license" name="mechanicLicense" placeholder="Optional" autocomplete="off">
+                            </label>
+                            <div class="form-row">
+                                <label class="checkbox"><input type="checkbox" id="mechanic-remember"> Keep me
+                                    signed in</label>
+                                <a href="#" class="link-muted">Forgot?</a>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">Sign in as Mechanic</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Sign Up View -->
+                <div class="view-signup hidden">
+                    <div class="login-tabs" role="tablist" aria-label="Signup roles">
+                        <button class="tab active" role="tab" id="tab-traveler-signup"
+                            aria-controls="panel-signup-traveler" aria-selected="true">Traveler</button>
+                        <button class="tab" role="tab" id="tab-mechanic-signup" aria-controls="panel-signup-mechanic"
+                            aria-selected="false">Mechanic</button>
+                    </div>
+                    <div class="login-panels">
+                        <form class="login-panel" id="panel-signup-traveler" role="tabpanel"
+                            aria-labelledby="tab-traveler-signup">
+                            <label class="form-group"><span>Full Name</span><input type="text" id="signup-traveler-name"
+                                    name="signupTravelerName" autocomplete="name" required></label>
+                            <label class="form-group"><span>Email</span><input type="email" id="signup-traveler-email"
+                                    name="signupTravelerEmail" autocomplete="email" required></label>
+                            <label class="form-group"><span>Password</span><input type="password"
+                                    id="signup-traveler-password" name="signupTravelerPassword" autocomplete="new-password" required></label>
+                            <div class="form-actions"><button type="submit" class="btn btn-primary">Create Traveler
+                                    Account</button></div>
+                        </form>
+
+                        <form class="login-panel hidden" id="panel-signup-mechanic" role="tabpanel"
+                            aria-labelledby="tab-mechanic-signup">
+                            <label class="form-group"><span>Full Name</span><input type="text" id="signup-mechanic-name"
+                                    name="signupMechanicName" autocomplete="name" required></label>
+                            <label class="form-group"><span>Email or Phone</span><input type="text"
+                                    id="signup-mechanic-contact" name="signupMechanicContact" autocomplete="email" required></label>
+                            <label class="form-group"><span>Password</span><input type="password"
+                                    id="signup-mechanic-password" name="signupMechanicPassword" autocomplete="new-password" required></label>
+                            <label class="form-group"><span>License / ID</span><input type="text"
+                                    id="signup-mechanic-license" name="signupMechanicLicense" autocomplete="off" required></label>
+                            <div class="form-actions"><button type="submit" class="btn btn-primary">Create Mechanic
+                                    Account</button></div>
+                        </form>
+                    </div>
+                </div>
+
+                <p style="margin-top:12px; color:var(--text-light)">Prefer the full page? <a
+                        href="pages/auth/signup.html" class="link-muted">Open Signup Page</a></p>
+            </div>
+        </div>
+    </div>
+</div>

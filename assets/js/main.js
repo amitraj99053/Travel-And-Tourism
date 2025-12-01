@@ -92,7 +92,9 @@ document.querySelectorAll('section[id]').forEach(s => sectionObserver && section
    Modes: 'choose' (chooser), 'signin', 'signup'
    ---------------------------- */
 const modalId = 'login-modal';
-const modal = document.getElementById(modalId);
+// Modal element is injected by `component-loader.js` after initial DOM load.
+// Initialize as null and resolve after components are loaded to avoid race conditions.
+let modal = null;
 let lastFocused = null;
 
 function trapFocus(modalEl) {
@@ -324,9 +326,22 @@ function detectDeviceCapabilities() {
 /* ----------------------------
    Init
    ---------------------------- */
-document.addEventListener('DOMContentLoaded', () => {
-    detectDeviceCapabilities();
-    setupLoginModal();
+
+// Listen for components to be loaded (from component-loader.js)
+// This ensures we wire events AFTER the modal and navbar have been injected
+function initializeAfterComponents() {
+    try {
+        // Re-resolve modal reference now that components have been injected
+        modal = document.getElementById(modalId);
+        // Wire backdrop click and close button if modal exists (some wiring previously ran too early)
+        if (modal) {
+            modal.addEventListener('click', (e) => { if (e.target === modal) closeLoginModal(); });
+            const closeBtn = modal.querySelector('[data-modal-close]') || modal.querySelector('.modal-close') || null;
+            closeBtn && closeBtn.addEventListener('click', closeLoginModal);
+        }
+
+        detectDeviceCapabilities();
+        setupLoginModal();
     
     // Wire "Get Started" button (navbar and hero)
     const signupBtn = document.getElementById('signup-btn');
@@ -353,6 +368,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.scrollTo({ top, behavior: 'smooth' });
             }
         });
+    } catch (err) {
+        // Prevent initialization errors from blocking the rest of the page
+        console.error('initializeAfterComponents error:', err);
     }
     
     // If page opened with query ?auth=signup or ?auth=signin, auto-open modal
@@ -368,6 +386,20 @@ document.addEventListener('DOMContentLoaded', () => {
             activateAuthRole(mode, role);
         }
     }
+}
+
+// Wire initialization to run after components are loaded
+if (document.readyState === 'loading') {
+    document.addEventListener('componentsLoaded', initializeAfterComponents);
+} else {
+    // If DOM is already loaded, initialize immediately
+    initializeAfterComponents();
+}
+
+// Also listen for DOMContentLoaded in case component-loader hasn't fired yet
+document.addEventListener('DOMContentLoaded', () => {
+    // Give component-loader a moment to dispatch its event
+    setTimeout(initializeAfterComponents, 100);
 });
 
 /* ----------------------------
